@@ -1,0 +1,16 @@
+PODS:
+  - UniPassSDK (0.0.1)
+
+DEPENDENCIES:
+  - UniPassSDK (from `../`)
+
+EXTERNAL SOURCES:
+  UniPassSDK:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  UniPassSDK: 29e275ee81e5e08ebb04cb5fd89b577baeda4c91
+
+PODFILE CHECKSUM: 744895bb0800d7c46ed8e95f5e3b90e3360c79bd
+
+COCOAPODS: 1.11.3

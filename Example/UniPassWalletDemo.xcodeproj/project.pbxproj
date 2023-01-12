@@ -1,0 +1,649 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8F5BB664296D428400585BB6 /* UniPassExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5BB663296D428400585BB6 /* UniPassExtension.swift */; };
+		8FE4A5322966A2F80011605D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE4A5312966A2F80011605D /* AppDelegate.swift */; };
+		8FE4A5362966A2F80011605D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE4A5352966A2F80011605D /* ViewController.swift */; };
+		8FE4A5392966A2F80011605D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FE4A5372966A2F80011605D /* Main.storyboard */; };
+		8FE4A53B2966A2FA0011605D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FE4A53A2966A2FA0011605D /* Assets.xcassets */; };
+		8FE4A53E2966A2FA0011605D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FE4A53C2966A2FA0011605D /* LaunchScreen.storyboard */; };
+		8FE4A5532966A2FA0011605D /* UnipassWalletUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE4A5522966A2FA0011605D /* UnipassWalletUITests.swift */; };
+		8FE4A5552966A2FA0011605D /* UnipassWalletUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE4A5542966A2FA0011605D /* UnipassWalletUITestsLaunchTests.swift */; };
+		CC519EA5B1106136C9A1A5ED /* libPods-UniPassWalletDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4F8CFA557264660F5BE5394 /* libPods-UniPassWalletDemo.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8FE4A5452966A2FA0011605D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8FE4A5262966A2F80011605D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8FE4A52D2966A2F80011605D;
+			remoteInfo = UnipassWallet;
+		};
+		8FE4A54F2966A2FA0011605D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8FE4A5262966A2F80011605D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8FE4A52D2966A2F80011605D;
+			remoteInfo = UnipassWallet;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		05F12B4BA470BD194B4CE1E0 /* Pods-UnipassWalletDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnipassWalletDemo.release.xcconfig"; path = "Target Support Files/Pods-UnipassWalletDemo/Pods-UnipassWalletDemo.release.xcconfig"; sourceTree = "<group>"; };
+		3602CD7433970CB8FE5439AD /* Pods-UniPassWalletDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniPassWalletDemo.release.xcconfig"; path = "Target Support Files/Pods-UniPassWalletDemo/Pods-UniPassWalletDemo.release.xcconfig"; sourceTree = "<group>"; };
+		8F5BB663296D428400585BB6 /* UniPassExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UniPassExtension.swift; sourceTree = "<group>"; };
+		8FE4A52E2966A2F80011605D /* UniPassWalletDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UniPassWalletDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FE4A5312966A2F80011605D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8FE4A5352966A2F80011605D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8FE4A5382966A2F80011605D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8FE4A53A2966A2FA0011605D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8FE4A53D2966A2FA0011605D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8FE4A53F2966A2FA0011605D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8FE4A5442966A2FA0011605D /* UniPassWalletDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UniPassWalletDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FE4A54E2966A2FA0011605D /* UniPassWalletDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UniPassWalletDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FE4A5522966A2FA0011605D /* UnipassWalletUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnipassWalletUITests.swift; sourceTree = "<group>"; };
+		8FE4A5542966A2FA0011605D /* UnipassWalletUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnipassWalletUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D296104908F0914D847E2DCC /* Pods-UniPassWalletDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UniPassWalletDemo.debug.xcconfig"; path = "Target Support Files/Pods-UniPassWalletDemo/Pods-UniPassWalletDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		D4F8CFA557264660F5BE5394 /* libPods-UniPassWalletDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UniPassWalletDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E324689080A30F460895E30E /* Pods-UnipassWalletDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UnipassWalletDemo.debug.xcconfig"; path = "Target Support Files/Pods-UnipassWalletDemo/Pods-UnipassWalletDemo.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8FE4A52B2966A2F80011605D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC519EA5B1106136C9A1A5ED /* libPods-UniPassWalletDemo.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FE4A5412966A2FA0011605D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FE4A54B2966A2FA0011605D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8FE4A5252966A2F80011605D = {
+			isa = PBXGroup;
+			children = (
+				8FE4A5302966A2F80011605D /* UnipassWallet */,
+				8FE4A5512966A2FA0011605D /* UnipassWalletUITests */,
+				8FE4A52F2966A2F80011605D /* Products */,
+				ACEA084EBB318837C340C688 /* Pods */,
+				FDC6FB2C8D71F15BF3075572 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8FE4A52F2966A2F80011605D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8FE4A52E2966A2F80011605D /* UniPassWalletDemo.app */,
+				8FE4A5442966A2FA0011605D /* UniPassWalletDemoTests.xctest */,
+				8FE4A54E2966A2FA0011605D /* UniPassWalletDemoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8FE4A5302966A2F80011605D /* UnipassWallet */ = {
+			isa = PBXGroup;
+			children = (
+				8F5BB663296D428400585BB6 /* UniPassExtension.swift */,
+				8FE4A5312966A2F80011605D /* AppDelegate.swift */,
+				8FE4A5352966A2F80011605D /* ViewController.swift */,
+				8FE4A5372966A2F80011605D /* Main.storyboard */,
+				8FE4A53A2966A2FA0011605D /* Assets.xcassets */,
+				8FE4A53C2966A2FA0011605D /* LaunchScreen.storyboard */,
+				8FE4A53F2966A2FA0011605D /* Info.plist */,
+			);
+			path = UnipassWallet;
+			sourceTree = "<group>";
+		};
+		8FE4A5512966A2FA0011605D /* UnipassWalletUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8FE4A5522966A2FA0011605D /* UnipassWalletUITests.swift */,
+				8FE4A5542966A2FA0011605D /* UnipassWalletUITestsLaunchTests.swift */,
+			);
+			path = UnipassWalletUITests;
+			sourceTree = "<group>";
+		};
+		ACEA084EBB318837C340C688 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E324689080A30F460895E30E /* Pods-UnipassWalletDemo.debug.xcconfig */,
+				05F12B4BA470BD194B4CE1E0 /* Pods-UnipassWalletDemo.release.xcconfig */,
+				D296104908F0914D847E2DCC /* Pods-UniPassWalletDemo.debug.xcconfig */,
+				3602CD7433970CB8FE5439AD /* Pods-UniPassWalletDemo.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		FDC6FB2C8D71F15BF3075572 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D4F8CFA557264660F5BE5394 /* libPods-UniPassWalletDemo.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8FE4A52D2966A2F80011605D /* UniPassWalletDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8FE4A5582966A2FA0011605D /* Build configuration list for PBXNativeTarget "UniPassWalletDemo" */;
+			buildPhases = (
+				C9F4B291E04E5F6B5992FE60 /* [CP] Check Pods Manifest.lock */,
+				8FE4A52A2966A2F80011605D /* Sources */,
+				8FE4A52B2966A2F80011605D /* Frameworks */,
+				8FE4A52C2966A2F80011605D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UniPassWalletDemo;
+			productName = UnipassWallet;
+			productReference = 8FE4A52E2966A2F80011605D /* UniPassWalletDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8FE4A5432966A2FA0011605D /* UniPassWalletDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8FE4A55B2966A2FA0011605D /* Build configuration list for PBXNativeTarget "UniPassWalletDemoTests" */;
+			buildPhases = (
+				8FE4A5402966A2FA0011605D /* Sources */,
+				8FE4A5412966A2FA0011605D /* Frameworks */,
+				8FE4A5422966A2FA0011605D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8FE4A5462966A2FA0011605D /* PBXTargetDependency */,
+			);
+			name = UniPassWalletDemoTests;
+			productName = UnipassWalletTests;
+			productReference = 8FE4A5442966A2FA0011605D /* UniPassWalletDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8FE4A54D2966A2FA0011605D /* UniPassWalletDemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8FE4A55E2966A2FA0011605D /* Build configuration list for PBXNativeTarget "UniPassWalletDemoUITests" */;
+			buildPhases = (
+				8FE4A54A2966A2FA0011605D /* Sources */,
+				8FE4A54B2966A2FA0011605D /* Frameworks */,
+				8FE4A54C2966A2FA0011605D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8FE4A5502966A2FA0011605D /* PBXTargetDependency */,
+			);
+			name = UniPassWalletDemoUITests;
+			productName = UnipassWalletUITests;
+			productReference = 8FE4A54E2966A2FA0011605D /* UniPassWalletDemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8FE4A5262966A2F80011605D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1410;
+				LastUpgradeCheck = 1410;
+				TargetAttributes = {
+					8FE4A52D2966A2F80011605D = {
+						CreatedOnToolsVersion = 14.1;
+					};
+					8FE4A5432966A2FA0011605D = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = 8FE4A52D2966A2F80011605D;
+					};
+					8FE4A54D2966A2FA0011605D = {
+						CreatedOnToolsVersion = 14.1;
+						TestTargetID = 8FE4A52D2966A2F80011605D;
+					};
+				};
+			};
+			buildConfigurationList = 8FE4A5292966A2F80011605D /* Build configuration list for PBXProject "UniPassWalletDemo" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8FE4A5252966A2F80011605D;
+			productRefGroup = 8FE4A52F2966A2F80011605D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8FE4A52D2966A2F80011605D /* UniPassWalletDemo */,
+				8FE4A5432966A2FA0011605D /* UniPassWalletDemoTests */,
+				8FE4A54D2966A2FA0011605D /* UniPassWalletDemoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8FE4A52C2966A2F80011605D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FE4A53E2966A2FA0011605D /* LaunchScreen.storyboard in Resources */,
+				8FE4A53B2966A2FA0011605D /* Assets.xcassets in Resources */,
+				8FE4A5392966A2F80011605D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FE4A5422966A2FA0011605D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FE4A54C2966A2FA0011605D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C9F4B291E04E5F6B5992FE60 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-UniPassWalletDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8FE4A52A2966A2F80011605D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FE4A5362966A2F80011605D /* ViewController.swift in Sources */,
+				8FE4A5322966A2F80011605D /* AppDelegate.swift in Sources */,
+				8F5BB664296D428400585BB6 /* UniPassExtension.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FE4A5402966A2FA0011605D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8FE4A54A2966A2FA0011605D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FE4A5532966A2FA0011605D /* UnipassWalletUITests.swift in Sources */,
+				8FE4A5552966A2FA0011605D /* UnipassWalletUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8FE4A5462966A2FA0011605D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8FE4A52D2966A2F80011605D /* UniPassWalletDemo */;
+			targetProxy = 8FE4A5452966A2FA0011605D /* PBXContainerItemProxy */;
+		};
+		8FE4A5502966A2FA0011605D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8FE4A52D2966A2F80011605D /* UniPassWalletDemo */;
+			targetProxy = 8FE4A54F2966A2FA0011605D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8FE4A5372966A2F80011605D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8FE4A5382966A2F80011605D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8FE4A53C2966A2FA0011605D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8FE4A53D2966A2FA0011605D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8FE4A5562966A2FA0011605D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8FE4A5572966A2FA0011605D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8FE4A5592966A2FA0011605D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D296104908F0914D847E2DCC /* Pods-UniPassWalletDemo.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 72YVX6JT8Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UnipassWallet/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.test.UnipassWallet;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8FE4A55A2966A2FA0011605D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3602CD7433970CB8FE5439AD /* Pods-UniPassWalletDemo.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 72YVX6JT8Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UnipassWallet/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.test.UnipassWallet;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8FE4A55C2966A2FA0011605D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.test.UnipassWalletTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UniPassWalletDemo.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/UniPassWalletDemo";
+			};
+			name = Debug;
+		};
+		8FE4A55D2966A2FA0011605D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.test.UnipassWalletTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UniPassWalletDemo.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/UniPassWalletDemo";
+			};
+			name = Release;
+		};
+		8FE4A55F2966A2FA0011605D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.test.UnipassWalletUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = UnipassWallet;
+			};
+			name = Debug;
+		};
+		8FE4A5602966A2FA0011605D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.test.UnipassWalletUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = UnipassWallet;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8FE4A5292966A2F80011605D /* Build configuration list for PBXProject "UniPassWalletDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8FE4A5562966A2FA0011605D /* Debug */,
+				8FE4A5572966A2FA0011605D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8FE4A5582966A2FA0011605D /* Build configuration list for PBXNativeTarget "UniPassWalletDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8FE4A5592966A2FA0011605D /* Debug */,
+				8FE4A55A2966A2FA0011605D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8FE4A55B2966A2FA0011605D /* Build configuration list for PBXNativeTarget "UniPassWalletDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8FE4A55C2966A2FA0011605D /* Debug */,
+				8FE4A55D2966A2FA0011605D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8FE4A55E2966A2FA0011605D /* Build configuration list for PBXNativeTarget "UniPassWalletDemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8FE4A55F2966A2FA0011605D /* Debug */,
+				8FE4A5602966A2FA0011605D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8FE4A5262966A2F80011605D /* Project object */;
+}
