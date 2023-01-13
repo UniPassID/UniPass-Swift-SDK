@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'UniPassSDK'
-  s.version          = '0.0.1'
+  s.version          = '0.0.7'
   s.summary          = 'A short description of UnipassRepoTest.'
 
 # This description is used to generate tags and improve search results.
@@ -24,7 +24,7 @@ TODO: Add long description of the pod here.
   s.homepage         = 'https://github.com/UniPassID/UniPass-Swift-SDK.git'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'UnipassRepoTest' => 'test@test.com' }
+  s.author           = { 'UniPassSDK' => 'johnz@lay2.dev' }
   s.source           = { :git => 'https://github.com/UniPassID/UniPass-Swift-SDK.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
