@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/tiangeng/Desktop/payCode/UniPass-Swift-SDK/Example/UniPassWalletDemo.xcodeproj">
+      location = "group:/Users/johnz/Desktop/payCode/UniPass-Swift-SDK/Example/UniPassWalletDemo.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

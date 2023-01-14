@@ -2,15 +2,15 @@ PODS:
   - UniPassSDK (0.0.7)
 
 DEPENDENCIES:
-  - UniPassSDK (from `../`)
+  - UniPassSDK (= 0.0.7)
 
-EXTERNAL SOURCES:
-  UniPassSDK:
-    :path: "../"
+SPEC REPOS:
+  https://github.com/UniPassID/UniPass-Swift-SDK-Spec.git:
+    - UniPassSDK
 
 SPEC CHECKSUMS:
-  UniPassSDK: fd805c140fa7f972740b558929e6668b1f077a43
+  UniPassSDK: 1591c25fda7d8d223d305fa53359e74e584184ac
 
-PODFILE CHECKSUM: 727dbdb63fc4d67dbf83098df667ed603671a5b9
+PODFILE CHECKSUM: aab9302f313516388cde3d04bc87c8b11323468c
 
 COCOAPODS: 1.11.3

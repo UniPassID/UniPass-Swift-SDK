@@ -25,7 +25,6 @@ extension String {
         return addingPercentEncoding(withAllowedCharacters: allowedQueryParamAndKey) ?? self
     }
 
-    // 将编码后的url转换回原始的url
     func uni_urlDecoded() -> String {
         return removingPercentEncoding ?? ""
     }

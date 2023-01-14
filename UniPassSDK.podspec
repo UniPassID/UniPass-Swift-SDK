@@ -1,5 +1,5 @@
 #
-# Be sure to run `pod lib lint UnipassRepoTest.podspec' to ensure this is a
+# Be sure to run `pod lib lint UniPassSDK.podspec' to ensure this is a
 # valid spec before submitting.
 #
 # Any lines starting with a # are optional, but their use is encouraged
@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'UniPassSDK'
-  s.version          = '0.0.7'
-  s.summary          = 'A short description of UnipassRepoTest.'
+  s.version          = '0.0.1'
+  s.summary          = 'An iOS SDK for UniPass Wallet.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -22,18 +22,17 @@ TODO: Add long description of the pod here.
                        DESC
 
   s.homepage         = 'https://github.com/UniPassID/UniPass-Swift-SDK.git'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'UniPassSDK' => 'johnz@lay2.dev' }
   s.source           = { :git => 'https://github.com/UniPassID/UniPass-Swift-SDK.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.social_media_url = 'https://twitter.com/UniPassID'
 
   s.ios.deployment_target = '12.0'
 
   s.source_files = 'UniPassSDK/Classes/**/*'
   
   # s.resource_bundles = {
-  #   'UnipassRepoTest' => ['UniPassSDK/Assets/*.png']
+  #   'UniPassSDK' => ['UniPassSDK/Assets/*.png']
   # }
 
   # s.public_header_files = 'Pod/Classes/**/*'
