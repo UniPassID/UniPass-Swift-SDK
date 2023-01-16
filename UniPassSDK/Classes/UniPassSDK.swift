@@ -13,6 +13,8 @@ public class UniPassSDK: NSObject {
 
     private var walletUrl: String = ""
     private var supportLoginType: ConnectType = ConnectType.both
+    private var authSession: ASWebAuthenticationSession!
+
 
     public init(sdkOption: UniPassSDKOption) {
         super.init()
@@ -21,6 +23,10 @@ public class UniPassSDK: NSObject {
             walletUrl = sdkOption.environment == .Mainnet ? "https://wallet.unipass.id" : "https://testnet.wallet.unipass.id"
         } else {
             walletUrl = sdkOption.walletUrl
+        }
+        
+        if option.appSetting == nil {
+            option.appSetting = UniPassSDKAppSetting()
         }
     }
 
@@ -208,7 +214,7 @@ public class UniPassSDK: NSObject {
         if #available(iOS 12.0, *) {
             if let unipassUrl = URL(string: urlStr) {
                 // open ASWebAuthenticationSession
-                let authSession = ASWebAuthenticationSession(url: unipassUrl, callbackURLScheme: redirectURL.scheme) { callbackURL, authError in
+                authSession = ASWebAuthenticationSession(url: unipassUrl, callbackURLScheme: redirectURL.scheme) { callbackURL, authError in
 
                     print("authError", authError)
                     print("callbackURL", callbackURL)
@@ -261,7 +267,7 @@ public class UniPassSDK: NSObject {
             hasStr = try uni_convertDictionaryToString(dict: dict).data(using: .utf8)?.toBase64URL() ?? ""
             return hasStr
         }catch let error{
-            throw UniPassError.runtimeError(msg: "encode fragment error")
+            throw UniPassError.encodingError
         }
     }
 
