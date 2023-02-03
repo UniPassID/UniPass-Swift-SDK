@@ -156,7 +156,7 @@ class ViewController: UIViewController {
             self.refreshUI()
         }, logoutErrorBlock: { error in
             print("unipassSdk: Logout failed ❎", error)
-        })
+        }, deep: false)
     }
 
     @objc func signMessageBtnClicked() {

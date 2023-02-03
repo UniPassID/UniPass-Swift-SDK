@@ -15,7 +15,6 @@ public class UniPassSDK: NSObject {
     private var supportLoginType: ConnectType = ConnectType.both
     private var authSession: ASWebAuthenticationSession!
 
-
     public init(sdkOption: UniPassSDKOption) {
         super.init()
         option = sdkOption
@@ -24,7 +23,7 @@ public class UniPassSDK: NSObject {
         } else {
             walletUrl = sdkOption.walletUrl
         }
-        
+
         if option.appSetting == nil {
             option.appSetting = UniPassSDKAppSetting()
         }
@@ -33,7 +32,12 @@ public class UniPassSDK: NSObject {
     public func logIn(loginSuccessBlock: @escaping (UniPassUserInfo) -> Void, loginErrorBlock: @escaping (UniPassError) -> Void) {
         logIn(loginType: ConnectType.both, loginSuccessBlock: loginSuccessBlock, loginErrorBlock: loginErrorBlock)
     }
-
+    
+    /// Login Unipass Wallet
+    /// - Parameters:
+    ///   - loginType: the login connect type,  google / email / both
+    ///   - loginSuccessBlock: success callback for login function, user info will be returned and cached
+    ///   - loginErrorBlock: error callback for login function, error code and message be returned
     public func logIn(loginType: ConnectType, loginSuccessBlock: @escaping (UniPassUserInfo) -> Void, loginErrorBlock: @escaping (UniPassError) -> Void) {
         supportLoginType = loginType
 
@@ -47,12 +51,11 @@ public class UniPassSDK: NSObject {
                     if response?.type == UniPassFunType.Login && response?.errorCode == nil {
                         let userInfo = response?.userInfo
                         if userInfo != nil {
-                            
                             let encoder = JSONEncoder()
                             encoder.outputFormatting = .prettyPrinted
                             let data = try? encoder.encode(userInfo)
                             UserDefaults.standard.set(String(data: data!, encoding: .utf8)!, forKey: "UniPassSDK")
-                            
+
                             loginSuccessBlock(userInfo!)
                         } else {
                             loginErrorBlock(UniPassError.unknownError)
@@ -62,42 +65,57 @@ public class UniPassSDK: NSObject {
                     }
                 }
             }
-        } catch  let error as UniPassError{
+        } catch let error as UniPassError {
             loginErrorBlock(error)
         } catch let error {
             loginErrorBlock(UniPassError.unknownError)
         }
     }
-
-    public func logOut(logOutSuccessBlock: @escaping () -> Void, logoutErrorBlock: @escaping (UniPassError) -> Void) {
+    
+    /// Logout UniPass Wallet
+    /// - Parameters:
+    ///   - logOutSuccessBlock: success callback for logout function
+    ///   - logoutErrorBlock: error callback for logout function, error code and message will be returned
+    ///   - deep: indicate whether logout user from UniPass web pages, if set to false, will only clear cached user info
+    public func logOut(logOutSuccessBlock: @escaping () -> Void, logoutErrorBlock: @escaping (UniPassError) -> Void, deep: Bool = true) {
         do {
-            try jumpToUrl(.LogOut, pathType: .LogOut, paraDict: nil) { error, callBackUrl in
-                if error != nil {
-                    logoutErrorBlock(UniPassError.appCancelled)
-                } else {
-                    do {
-                        let callbackData = Data.fromBase64URL(callBackUrl!.fragment!)
-                        let response = try? JSONDecoder().decode(ResponseMessage.self, from: callbackData!)
-                        if response?.type == UniPassFunType.LogOut && response?.errorCode == nil {
-                            UserDefaults.standard.set("", forKey: "UniPassSDK")
-                            logOutSuccessBlock()
-                        } else {
-                            logoutErrorBlock(UniPassError.runtimeError(msg: response?.errorMsg ?? ""))
-                        }
+            if deep {
+                try jumpToUrl(.LogOut, pathType: .LogOut, paraDict: nil) { error, callBackUrl in
+                    if error != nil {
+                        logoutErrorBlock(UniPassError.appCancelled)
+                    } else {
+                        do {
+                            let callbackData = Data.fromBase64URL(callBackUrl!.fragment!)
+                            let response = try? JSONDecoder().decode(ResponseMessage.self, from: callbackData!)
+                            if response?.type == UniPassFunType.LogOut && response?.errorCode == nil {
+                                UserDefaults.standard.set("", forKey: "UniPassSDK")
+                                logOutSuccessBlock()
+                            } else {
+                                logoutErrorBlock(UniPassError.runtimeError(msg: response?.errorMsg ?? ""))
+                            }
 
-                    } catch let error {
-                        logoutErrorBlock(UniPassError.decodingError)
+                        } catch let error {
+                            logoutErrorBlock(UniPassError.decodingError)
+                        }
                     }
                 }
+            } else {
+                UserDefaults.standard.set("", forKey: "UniPassSDK")
+                logOutSuccessBlock()
             }
 
-        } catch  let error as UniPassError{
+        } catch let error as UniPassError {
             logoutErrorBlock(error)
         } catch let error {
             logoutErrorBlock(UniPassError.unknownError)
         }
     }
-
+    
+    /// Sign Message with UniPass Wallet
+    /// - Parameters:
+    ///   - signInput: input to be signed
+    ///   - SuccessBlock: success callback for sign message, signature will be returned when succeed
+    ///   - ErrorBlock: error callback for sign message, error code and message when failed
     public func signMessage(_ signInput: UniPassSignInput, SuccessBlock: @escaping (String) -> Void, ErrorBlock: @escaping (UniPassError) -> Void) {
         do {
             try assertSameUser(address: signInput.from)
@@ -130,13 +148,18 @@ public class UniPassSDK: NSObject {
                 }
             }
 
-        } catch  let error as UniPassError{
+        } catch let error as UniPassError {
             ErrorBlock(error)
         } catch let error {
             ErrorBlock(UniPassError.unknownError)
         }
     }
-
+    
+    /// Send Transaction with UniPass Wallet
+    /// - Parameters:
+    ///   - transaction: ethereum transaction body, including to, value, data
+    ///   - SuccessBlock: success callback for send transaction, if transaction comitted success on blockchain, transaction hash will be returned
+    ///   - ErrorBlock: error callback for send transaction, if transaction failed, error code and message will be returned
     public func sendTransaction(_ transaction: UniPassTransaction, SuccessBlock: @escaping (String) -> Void, ErrorBlock: @escaping (UniPassError) -> Void) {
         do {
             try assertSameUser(address: transaction.from)
@@ -170,7 +193,7 @@ public class UniPassSDK: NSObject {
                     ErrorBlock(UniPassError.decodingError)
                 }
             }
-        } catch  let error as UniPassError{
+        } catch let error as UniPassError {
             ErrorBlock(error)
         } catch let error {
             ErrorBlock(UniPassError.unknownError)
@@ -189,7 +212,7 @@ public class UniPassSDK: NSObject {
     }
 
     public func isLogin() -> Bool {
-       return getUserInfo() != nil
+        return getUserInfo() != nil
     }
 
     public func setChain(chain: ChainType) {
@@ -253,7 +276,7 @@ public class UniPassSDK: NSObject {
     }
 
     private func buildHashStr(_ funType: UniPassFunType, paraDict: [String: AnyObject]?) throws -> String {
-        do{
+        do {
             var hasStr = ""
             var dict = [String: AnyObject]()
             dict["type"] = funType.rawValue as AnyObject
@@ -266,7 +289,7 @@ public class UniPassSDK: NSObject {
 //            hasStr = try uni_convertDictionaryToString(dict: dict).uni_toBase64().uni_urlEncoded()
             hasStr = try uni_convertDictionaryToString(dict: dict).data(using: .utf8)?.toBase64URL() ?? ""
             return hasStr
-        }catch let error{
+        } catch let error {
             throw UniPassError.encodingError
         }
     }
