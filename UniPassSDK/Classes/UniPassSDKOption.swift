@@ -84,6 +84,18 @@ public class UniPassSDKOption: NSObject {
     public var appSetting: UniPassSDKAppSetting?
 }
 
+public struct UniPassSDKLoginOption {
+    public var connectType: ConnectType? = ConnectType.both
+    public var authorize: Bool? = false
+    public var returnEmail: Bool? = false
+    
+    public init(connectType: ConnectType?, authorize: Bool?, returnEmail: Bool?) {
+        self.connectType = connectType
+        self.authorize = authorize
+        self.returnEmail = returnEmail
+    }
+}
+
 public enum UniPassSignType: String {
     case PersonalSign
     case SignTypedData
@@ -106,11 +118,15 @@ public struct UniPassUserInfo: Codable {
     public let address: String
     public let email: String?
     public let newborn: Bool?
+    public let message: String?
+    public let signature: String?
 
-    public init(address: String, email: String?, newborn: Bool?) {
+    public init(address: String, email: String?, newborn: Bool?, message: String?, signature: String?) {
         self.address = address
         self.email = email
         self.newborn = newborn
+        self.message = message
+        self.signature = signature
     }
 
     public init(from decoder: Decoder) throws {
@@ -118,6 +134,8 @@ public struct UniPassUserInfo: Codable {
         address = try container.decode(String.self, forKey: .address)
         email = try container.decodeIfPresent(String.self, forKey: .email)
         newborn = try container.decodeIfPresent(Bool.self, forKey: .newborn)
+        message = try container.decodeIfPresent(String.self, forKey: .message)
+        signature = try container.decodeIfPresent(String.self, forKey: .signature)
     }
 }
 

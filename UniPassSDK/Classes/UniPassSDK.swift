@@ -30,19 +30,23 @@ public class UniPassSDK: NSObject {
     }
 
     public func logIn(loginSuccessBlock: @escaping (UniPassUserInfo) -> Void, loginErrorBlock: @escaping (UniPassError) -> Void) {
-        logIn(loginType: ConnectType.both, loginSuccessBlock: loginSuccessBlock, loginErrorBlock: loginErrorBlock)
+        logIn(loginSuccessBlock: loginSuccessBlock, loginErrorBlock: loginErrorBlock, loginOption: nil)
     }
     
     /// Login Unipass Wallet
     /// - Parameters:
-    ///   - loginType: the login connect type,  google / email / both
     ///   - loginSuccessBlock: success callback for login function, user info will be returned and cached
     ///   - loginErrorBlock: error callback for login function, error code and message be returned
-    public func logIn(loginType: ConnectType, loginSuccessBlock: @escaping (UniPassUserInfo) -> Void, loginErrorBlock: @escaping (UniPassError) -> Void) {
-        supportLoginType = loginType
+    ///   - loginOption: the login optoins, inlcuding connect type, return email, authorize etc.
+    public func logIn(loginSuccessBlock: @escaping (UniPassUserInfo) -> Void, loginErrorBlock: @escaping (UniPassError) -> Void, loginOption: UniPassSDKLoginOption?) {
+        supportLoginType = loginOption?.connectType == nil ? ConnectType.both : loginOption!.connectType!
 
         do {
-            try jumpToUrl(.Login, pathType: .Login, paraDict: nil) { error, callBackUrl in
+            var dict = [String: AnyObject]()
+            dict["authorize"] = (loginOption?.authorize == true) as AnyObject
+            dict["returnEmail"] = (loginOption?.returnEmail == true) as AnyObject
+
+            try jumpToUrl(.Login, pathType: .Login, paraDict: dict) { error, callBackUrl in
                 if error != nil {
                     loginErrorBlock(error!)
                 } else {
