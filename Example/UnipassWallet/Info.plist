@@ -5,11 +5,11 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>io.unipass</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>unipassapp</string>
+				<string>ios-demo</string>
 			</array>
 		</dict>
 	</array>

@@ -1,5 +1,5 @@
 PODS:
-  - UniPassSDK (0.0.3)
+  - UniPassSDK (0.0.4)
 
 DEPENDENCIES:
   - UniPassSDK (from `../`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  UniPassSDK: 23bc9a2f86f15ede3d3a8aafb4ea4c64dfea3d8d
+  UniPassSDK: eb0cf98e395b2266182d8d03323598e3919650c6
 
-PODFILE CHECKSUM: eb315e9a1b13edb5b01091a573dbbdb2e659ca83
+PODFILE CHECKSUM: 9a65e45705b0464da613ffc6b9803cfee3ff25bf
 
 COCOAPODS: 1.11.3

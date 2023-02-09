@@ -32,7 +32,7 @@ public class UniPassSDK: NSObject {
     public func logIn(loginSuccessBlock: @escaping (UniPassUserInfo) -> Void, loginErrorBlock: @escaping (UniPassError) -> Void) {
         logIn(loginSuccessBlock: loginSuccessBlock, loginErrorBlock: loginErrorBlock, loginOption: nil)
     }
-    
+
     /// Login Unipass Wallet
     /// - Parameters:
     ///   - loginSuccessBlock: success callback for login function, user info will be returned and cached
@@ -75,7 +75,7 @@ public class UniPassSDK: NSObject {
             loginErrorBlock(UniPassError.unknownError)
         }
     }
-    
+
     /// Logout UniPass Wallet
     /// - Parameters:
     ///   - logOutSuccessBlock: success callback for logout function
@@ -114,7 +114,7 @@ public class UniPassSDK: NSObject {
             logoutErrorBlock(UniPassError.unknownError)
         }
     }
-    
+
     /// Sign Message with UniPass Wallet
     /// - Parameters:
     ///   - signInput: input to be signed
@@ -158,7 +158,7 @@ public class UniPassSDK: NSObject {
             ErrorBlock(UniPassError.unknownError)
         }
     }
-    
+
     /// Send Transaction with UniPass Wallet
     /// - Parameters:
     ///   - transaction: ethereum transaction body, including to, value, data
@@ -228,39 +228,66 @@ public class UniPassSDK: NSObject {
     }
 
     private func jumpToUrl(_ funType: UniPassFunType, pathType: UniPassPathType, paraDict: [String: AnyObject]?, callBackBlock: @escaping ((UniPassError?, URL?) -> Void)) throws {
-        guard
-            let bundleId = Bundle.main.bundleIdentifier,
-            let redirectURL = URL(string: "\(bundleId)://\(pathType.rawValue)")
-        else {
-            throw UniPassError.noBundleIdentifierFound
+        var isActive = false
+        if #available(iOS 13.0, *) {
+            let scene = UIApplication.shared.connectedScenes
+                .first { $0.activationState == .foregroundActive && $0 is UIWindowScene } as? UIWindowScene
+            if scene != nil {
+                isActive = true
+            }
         }
 
-        let urlStr = try generateJumpUrl(funType, pathType: pathType, redirectUrlStr: redirectURL.absoluteString, paraDict: paraDict)
+        print("UIWindowScene foregroundActive = ", isActive)
 
-        print("urlStr", urlStr)
-        if #available(iOS 12.0, *) {
-            if let unipassUrl = URL(string: urlStr) {
-                // open ASWebAuthenticationSession
-                authSession = ASWebAuthenticationSession(url: unipassUrl, callbackURLScheme: redirectURL.scheme) { callbackURL, authError in
+        if isActive == false {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self._jumpToUrl(funType, pathType: pathType, paraDict: paraDict, callBackBlock: callBackBlock)
+            }
+        } else {
+            _jumpToUrl(funType, pathType: pathType, paraDict: paraDict, callBackBlock: callBackBlock)
+        }
+    }
 
-                    print("authError", authError)
-                    print("callbackURL", callbackURL)
-                    if authError == nil {
-                        callBackBlock(nil, callbackURL)
-                    } else {
-                        callBackBlock(UniPassError.appCancelled, nil)
+    private func _jumpToUrl(_ funType: UniPassFunType, pathType: UniPassPathType, paraDict: [String: AnyObject]?, callBackBlock: @escaping ((UniPassError?, URL?) -> Void)) {
+        do {
+            guard
+                let bundleId = Bundle.main.bundleIdentifier,
+                let redirectURL = URL(string: "\(bundleId)://\(pathType.rawValue)")
+            else {
+                throw UniPassError.noBundleIdentifierFound
+            }
+
+            let urlStr = try generateJumpUrl(funType, pathType: pathType, redirectUrlStr: redirectURL.absoluteString, paraDict: paraDict)
+
+            if #available(iOS 12.0, *) {
+                if let unipassUrl = URL(string: urlStr) {
+                    // open ASWebAuthenticationSession
+                    self.authSession = ASWebAuthenticationSession(url: unipassUrl, callbackURLScheme: redirectURL.scheme) { callbackURL, authError in
+
+                        print("authError", authError)
+                        print("callbackURL", callbackURL)
+                        if authError == nil {
+                            callBackBlock(nil, callbackURL)
+                        } else {
+                            callBackBlock(UniPassError.appCancelled, nil)
+                        }
+                    }
+
+                    if #available(iOS 13.0, *) {
+                        self.authSession.presentationContextProvider = self
+                    }
+                    if !(self.authSession.start()) {
+                        callBackBlock(UniPassError.unknownError, nil)
                     }
                 }
 
-                if #available(iOS 13.0, *) {
-                    authSession.presentationContextProvider = self
-                }
-                if !(authSession.start()) {
-                    throw UniPassError.unknownError
-                }
+            } else {
+                callBackBlock(UniPassError.runtimeError(msg: "iOS version is less than 12"), nil)
             }
-        } else {
-            throw UniPassError.runtimeError(msg: "iOS version is less than 12")
+        } catch let error as UniPassError {
+            callBackBlock(error, nil)
+        } catch let error {
+            callBackBlock(UniPassError.unknownError, nil)
         }
     }
 

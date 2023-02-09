@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: UISceneSession Lifecycle
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        NotificationCenter.default.post(name: NSNotification.Name.init("receiveUrlScheme"), object: url)
         return true
     }
 }
