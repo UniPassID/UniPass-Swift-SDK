@@ -120,89 +120,116 @@ public class UniPassSDK: NSObject {
     ///   - signInput: input to be signed
     ///   - SuccessBlock: success callback for sign message, signature will be returned when succeed
     ///   - ErrorBlock: error callback for sign message, error code and message when failed
-    public func signMessage(_ signInput: UniPassSignInput, SuccessBlock: @escaping (String) -> Void, ErrorBlock: @escaping (UniPassError) -> Void) {
-        do {
-            try assertSameUser(address: signInput.from)
+public func signMessage(_ signInput: UniPassSignInput, SuccessBlock: @escaping (String) -> Void, ErrorBlock: @escaping (UniPassError) -> Void) {
+    do {
+        try assertSameUser(address: signInput.from)
 
-            var dict = [String: AnyObject]()
-            dict["from"] = signInput.from as AnyObject
-            dict["type"] = signInput.type.rawValue as AnyObject
-            dict["msg"] = signInput.msg as AnyObject
+        let dict = ["from": signInput.from,
+                    "type": signInput.type.rawValue,
+                    "msg": signInput.msg] as [String: AnyObject]
 
-            try jumpToUrl(.SignMessage, pathType: .SignMessage, paraDict: dict) { error, callBackUrl in
-                if error != nil {
-                    ErrorBlock(error!)
-                } else {
-                    do {
-                        let callbackData = Data.fromBase64URL(callBackUrl!.fragment!)
-                        print("callbackData", String(data: callbackData!, encoding: .utf8)!)
-                        let response = try? JSONDecoder().decode(ResponseMessage.self, from: callbackData!)
-                        print("response", response)
-                        if response?.type == UniPassFunType.SignMessage && response?.errorCode == nil {
-                            let signature = response?.signature
-                            if signature != nil {
-                                SuccessBlock(signature!)
-                            } else {
-                                ErrorBlock(UniPassError.runtimeError(msg: "signature is nil"))
-                            }
-                        } else {
-                            ErrorBlock(UniPassError.userCancelled(msg: response?.errorMsg))
-                        }
-                    } catch let error { ErrorBlock(UniPassError.decodingError) }
-                }
+        try jumpToUrl(.SignMessage, pathType: .SignMessage, paraDict: dict) { error, callBackUrl in
+            if let error = error {
+                ErrorBlock(error)
+                return
+            }
+            guard let callbackData = Data.fromBase64URL(callBackUrl!.fragment!),
+                  let response = try? JSONDecoder().decode(ResponseMessage.self, from: callbackData) else {
+                ErrorBlock(UniPassError.decodingError)
+                return
             }
 
-        } catch let error as UniPassError {
-            ErrorBlock(error)
-        } catch let error {
-            ErrorBlock(UniPassError.unknownError)
+            guard response.type == UniPassFunType.SignMessage else {
+                ErrorBlock(UniPassError.runtimeError(msg: "invalid response type \(response.type), expect \(UniPassFunType.Transaction)"))
+                return
+            }
+
+            if let errorCode = response.errorCode {
+                switch errorCode {
+                case 409:
+                    UserDefaults.standard.set("", forKey: "UniPassSDK")
+                    ErrorBlock(UniPassError.userNotLogin)
+                default:
+                    ErrorBlock(UniPassError.userCancelled(msg: response.errorMsg))
+                }
+            } else {
+                guard let signature = response.signature else {
+                    ErrorBlock(UniPassError.runtimeError(msg: "signature is nil"))
+                    return
+                }
+                SuccessBlock(signature)
+            }
         }
+    } catch let error as UniPassError {
+        ErrorBlock(error)
+    } catch {
+        ErrorBlock(UniPassError.unknownError)
     }
+}
+
+
 
     /// Send Transaction with UniPass Wallet
     /// - Parameters:
     ///   - transaction: ethereum transaction body, including to, value, data
     ///   - SuccessBlock: success callback for send transaction, if transaction comitted success on blockchain, transaction hash will be returned
     ///   - ErrorBlock: error callback for send transaction, if transaction failed, error code and message will be returned
-    public func sendTransaction(_ transaction: UniPassTransaction, SuccessBlock: @escaping (String) -> Void, ErrorBlock: @escaping (UniPassError) -> Void) {
-        do {
-            try assertSameUser(address: transaction.from)
-
-            var dict = [String: AnyObject]()
-            dict["from"] = transaction.from as AnyObject
-            dict["to"] = transaction.to as AnyObject
-            dict["value"] = transaction.value as AnyObject
-            dict["data"] = transaction.data as AnyObject
-
-            try jumpToUrl(.Transaction, pathType: .Transaction, paraDict: dict) { error, callBackUrl in
-                do {
-                    if error != nil {
-                        ErrorBlock(error!)
-                    } else {
-                        let callbackData = Data.fromBase64URL(callBackUrl!.fragment!)
-                        print("callbackData", String(data: callbackData!, encoding: .utf8)!)
-                        let response = try? JSONDecoder().decode(ResponseMessage.self, from: callbackData!)
-                        if response?.type == UniPassFunType.Transaction && response?.errorCode == nil {
-                            let transactionHash = response?.transactionHash
-                            if transactionHash != nil {
-                                SuccessBlock(transactionHash!)
-                            } else {
-                                ErrorBlock(UniPassError.runtimeError(msg: "transactionHash is nil"))
-                            }
-                        } else {
-                            ErrorBlock(UniPassError.userCancelled(msg: response?.errorMsg))
-                        }
-                    }
-                } catch let error {
-                    ErrorBlock(UniPassError.decodingError)
-                }
-            }
-        } catch let error as UniPassError {
-            ErrorBlock(error)
-        } catch let error {
-            ErrorBlock(UniPassError.unknownError)
-        }
-    }
+ public func sendTransaction(_ transaction: UniPassTransaction, SuccessBlock: @escaping (String) -> Void, ErrorBlock: @escaping (UniPassError) -> Void) {
+     do {
+         try assertSameUser(address: transaction.from)
+ 
+         var dict = [String: AnyObject]()
+         dict["from"] = transaction.from as AnyObject
+         dict["to"] = transaction.to as AnyObject
+         dict["value"] = transaction.value as AnyObject
+         dict["data"] = transaction.data as AnyObject
+ 
+         try jumpToUrl(.Transaction, pathType: .Transaction, paraDict: dict) { error, callBackUrl in
+             do {
+                 guard error == nil else {
+                     ErrorBlock(error!)
+                     return
+                 }
+ 
+                 guard let callBackUrl = callBackUrl,
+                       let callbackData = Data.fromBase64URL(callBackUrl.fragment!),
+                       let response = try? JSONDecoder().decode(ResponseMessage.self, from: callbackData)
+                 else {
+                     ErrorBlock(UniPassError.decodingError)
+                     return
+                 }
+ 
+                 guard response.type == UniPassFunType.Transaction else {
+                     ErrorBlock(UniPassError.runtimeError(msg: "invalid response type \(response.type), expect \(UniPassFunType.Transaction)"))
+                     return
+                 }
+ 
+                 if let errorCode = response.errorCode {
+                     switch errorCode {
+                     case 409:
+                         UserDefaults.standard.set("", forKey: "UniPassSDK")
+                         ErrorBlock(UniPassError.userNotLogin)
+                     default:
+                         ErrorBlock(UniPassError.userCancelled(msg: response.errorMsg))
+                     }
+                 } else {
+                     guard let transactionHash = response.transactionHash else {
+                         ErrorBlock(UniPassError.runtimeError(msg: "transactionHash is nil"))
+                         return
+                     }
+                     SuccessBlock(transactionHash)
+                 }
+             } catch let error {
+                 ErrorBlock(UniPassError.decodingError)
+             }
+         }
+     } catch let error as UniPassError {
+         ErrorBlock(error)
+     } catch {
+         ErrorBlock(UniPassError.unknownError)
+     }
+ }
+ 
 
     public func getUserInfo() -> UniPassUserInfo? {
         do {
@@ -259,6 +286,8 @@ public class UniPassSDK: NSObject {
 
             let urlStr = try generateJumpUrl(funType, pathType: pathType, redirectUrlStr: redirectURL.absoluteString, paraDict: paraDict)
 
+            print("url", urlStr)
+
             if #available(iOS 12.0, *) {
                 if let unipassUrl = URL(string: urlStr) {
                     // open ASWebAuthenticationSession
@@ -276,6 +305,7 @@ public class UniPassSDK: NSObject {
                     if #available(iOS 13.0, *) {
                         self.authSession.presentationContextProvider = self
                     }
+//                    self.authSession.prefersEphemeralWebBrowserSession = true
                     if !(self.authSession.start()) {
                         callBackBlock(UniPassError.unknownError, nil)
                     }

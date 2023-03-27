@@ -357,77 +357,93 @@ class ViewController: UIViewController {
     }
 
     @objc func signMessageBtnClicked() {
-        if let userInfo = unipassSdk?.getUserInfo() {
-            let signInput = UniPassSignInput()
-            signInput.from = userInfo.address
-            signInput.type = UniPassSignType.PersonalSign
-            signInput.msg = signTextField?.text ?? "Test Sign Message"
-
-            unipassSdk?.signMessage(signInput, SuccessBlock: { signature in
-                print("unipassSdk: sign message successfully ✅", signature)
-                self.signatureValueText?.text = signature
-            }, ErrorBlock: { error in
-                print("unipassSdk: sign message failed ❎", error)
-            })
-        } else {
+        guard let userInfo = unipassSdk?.getUserInfo() else {
             print("unipassSdk: user not login ❎")
+            refreshUI()
+            return
         }
+        let signInput = UniPassSignInput()
+        signInput.from = userInfo.address
+        signInput.type = UniPassSignType.PersonalSign
+        signInput.msg = signTextField?.text ?? "Test Sign Message"
+
+        unipassSdk?.signMessage(signInput, SuccessBlock: { signature in
+            print("unipassSdk: sign message successfully ✅", signature)
+            self.signatureValueText?.text = signature
+        }, ErrorBlock: { error in
+
+            print("unipassSdk: sign message failed ❎", error)
+            switch error {
+            case UniPassError.userNotLogin:
+                self.refreshUI()
+                break
+            default:
+                print()
+            }
+        })
     }
 
     @objc func transctionBtnBtnClicked() {
-        if let userInfo = unipassSdk?.getUserInfo() {
-            let tx = UniPassTransaction()
-            tx.from = userInfo.address
-            tx.to = "0x635b8f68aa1407712a3158782A7E21833bB392CC"
-            tx.value = "0x38d7ea4c68000"
-
-            unipassSdk?.sendTransaction(tx, SuccessBlock: { transactionHash in
-                print("unipassSdk: send transaction success ✅", transactionHash)
-                self.transactionHashLabel?.text = transactionHash
-            }, ErrorBlock: { error in
-                print("unipassSdk: send transaction failed ❎", error)
-            })
-        } else {
+        guard let userInfo = unipassSdk?.getUserInfo() else {
             print("unipassSdk: user not login ❎")
+            refreshUI()
+            return
         }
+        let tx = UniPassTransaction()
+        tx.from = userInfo.address
+        tx.to = "0x635b8f68aa1407712a3158782A7E21833bB392CC"
+        tx.value = "0x38d7ea4c68000"
+
+        unipassSdk?.sendTransaction(tx, SuccessBlock: { transactionHash in
+            print("unipassSdk: send transaction success ✅", transactionHash)
+            self.transactionHashLabel?.text = transactionHash
+        }, ErrorBlock: { error in
+            print("unipassSdk: send transaction failed ❎", error)
+            switch error {
+            case UniPassError.userNotLogin:
+                self.refreshUI()
+                break
+            default:
+                print()
+            }
+        })
     }
 
     @objc func sendNFTBtnClicked() {
-        if let userInfo = unipassSdk?.getUserInfo() {
-            do {
-                // NFT is on ethereum, switch to eth
-                unipassSdk?.setChain(chain: ChainType.eth)
-
-
-                let NFTTokenContract = web3.EthereumAddress("0xD5835369d4F691094D7509296cFC4dA19EFe4618")
-                let sender = web3.EthereumAddress(userInfo.address)
-                let to = web3.EthereumAddress("0x635b8f68aa1407712a3158782A7E21833bB392CC")
-                let tokenId = BigUInt(3405)
-
-                // build function data for ERC721 safeTransferFrom(_sender: address, _to: address, _tokenId: uint256)
-                let transferFunction = web3.ERC721Functions.safeTransferFrom(contract: NFTTokenContract, sender: sender, to: to, tokenId: tokenId)
-                let encoder = ABIFunctionEncoder("safeTransferFrom")
-                try transferFunction.encode(to: encoder)
-                let data = try encoder.encoded().hexEncodedString()
-
-                let tx = UniPassTransaction()
-                tx.from = userInfo.address
-                tx.to = NFTTokenContract.value
-//              tx.value = "0x"
-                tx.data = data
-
-                unipassSdk?.sendTransaction(tx, SuccessBlock: { transactionHash in
-                    print("unipassSdk: send NFT success ✅", transactionHash)
-                    self.sendNFTTransactionHashLabel?.text = transactionHash
-                }, ErrorBlock: { error in
-                    print("unipassSdk: send NFT failed ❎", error)
-                })
-
-            } catch {
-            }
-
-        } else {
+        guard let userInfo = unipassSdk?.getUserInfo() else {
             print("unipassSdk: user not login ❎")
+            refreshUI()
+            return
+        }
+        do {
+            // NFT is on ethereum, switch to eth
+            unipassSdk?.setChain(chain: ChainType.eth)
+
+            let NFTTokenContract = web3.EthereumAddress("0xD5835369d4F691094D7509296cFC4dA19EFe4618")
+            let sender = web3.EthereumAddress(userInfo.address)
+            let to = web3.EthereumAddress("0x635b8f68aa1407712a3158782A7E21833bB392CC")
+            let tokenId = BigUInt(3405)
+
+            // build function data for ERC721 safeTransferFrom(_sender: address, _to: address, _tokenId: uint256)
+            let transferFunction = web3.ERC721Functions.safeTransferFrom(contract: NFTTokenContract, sender: sender, to: to, tokenId: tokenId)
+            let encoder = ABIFunctionEncoder("safeTransferFrom")
+            try transferFunction.encode(to: encoder)
+            let data = try encoder.encoded().hexEncodedString()
+
+            let tx = UniPassTransaction()
+            tx.from = userInfo.address
+            tx.to = NFTTokenContract.value
+//              tx.value = "0x"
+            tx.data = data
+
+            unipassSdk?.sendTransaction(tx, SuccessBlock: { transactionHash in
+                print("unipassSdk: send NFT success ✅", transactionHash)
+                self.sendNFTTransactionHashLabel?.text = transactionHash
+            }, ErrorBlock: { error in
+                print("unipassSdk: send NFT failed ❎", error)
+            })
+
+        } catch {
         }
     }
 
