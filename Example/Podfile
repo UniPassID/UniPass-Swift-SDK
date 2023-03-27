@@ -10,8 +10,8 @@ inhibit_all_warnings!
 
 
 target 'UniPassWalletDemo' do 
-#   pod 'UniPassSDK', '0.0.5'  # for pod release verfication
-    pod 'UniPassSDK', :path => '../' # for local debug
+    pod 'UniPassSDK', '0.0.6'  # for pod release verfication
+#   pod 'UniPassSDK', :path => '../' # for local debug
     pod 'secp256k1.swift', :modular_headers => true
     pod 'web3.swift'
 end
