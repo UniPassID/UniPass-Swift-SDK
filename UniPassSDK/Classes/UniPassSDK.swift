@@ -13,6 +13,7 @@ public class UniPassSDK: NSObject {
 
     private var walletUrl: String = ""
     private var supportLoginType: ConnectType = ConnectType.both
+    private var forceLogin: String = "0"
     private var authSession: ASWebAuthenticationSession!
 
     public init(sdkOption: UniPassSDKOption) {
@@ -40,6 +41,7 @@ public class UniPassSDK: NSObject {
     ///   - loginOption: the login optoins, inlcuding connect type, return email, authorize etc.
     public func logIn(loginSuccessBlock: @escaping (UniPassUserInfo) -> Void, loginErrorBlock: @escaping (UniPassError) -> Void, loginOption: UniPassSDKLoginOption?) {
         supportLoginType = loginOption?.connectType == nil ? ConnectType.both : loginOption!.connectType!
+        forceLogin = loginOption?.forceLogin == true ? "1": "0"
 
         do {
             var dict = [String: AnyObject]()
@@ -325,6 +327,7 @@ public func signMessage(_ signInput: UniPassSignInput, SuccessBlock: @escaping (
         var urlStr = walletUrl + "/" + pathType.rawValue + "?redirectUrl=" + redirectUrlStr.uni_urlEncoded()
         if funType == UniPassFunType.Login {
             urlStr = urlStr + "&connectType=" + supportLoginType.rawValue
+            urlStr = urlStr + "&forceLogin=" + forceLogin
         }
         let hash = try buildHashStr(funType, paraDict: paraDict)
         urlStr = urlStr + "#" + hash

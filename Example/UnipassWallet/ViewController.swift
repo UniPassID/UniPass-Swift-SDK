@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     var userInfoView: UIScrollView?
 
     var addressReturnSwitch: UISwitch?
+    var forceLoginSwitch: UISwitch?
     var emailReturnSwitch: UISwitch?
 
     var addressValueText: UITextView?
@@ -96,7 +97,18 @@ class ViewController: UIViewController {
         emailReturnSwitch?.isOn = false
         loginView?.addSubview(emailReturnSwitch!)
 
-        let spanLabel = UILabel(frame: CGRect(x: view.width() / 2 - 120, y: emailReturnLabel.bottom + 30, width: 240, height: 50))
+        let forceLoginLabel = UILabel(frame: CGRect(x: 20, y: emailReturnLabel.bottom + 10, width: 160, height: 50))
+        forceLoginLabel.font = UIFont.systemFont(ofSize: 14)
+        forceLoginLabel.textAlignment = .center
+        forceLoginLabel.textColor = UIColor.black
+        forceLoginLabel.text = "Force Login:"
+        loginView?.addSubview(forceLoginLabel)
+
+        forceLoginSwitch = UISwitch(frame: CGRect(x: view.width() - 120, y: emailReturnLabel.bottom + 10, width: 100, height: 50))
+        forceLoginSwitch?.isOn = false
+        loginView?.addSubview(forceLoginSwitch!)
+        
+        let spanLabel = UILabel(frame: CGRect(x: view.width() / 2 - 120, y: forceLoginLabel.bottom + 30, width: 240, height: 50))
         spanLabel.font = UIFont.systemFont(ofSize: 10)
         spanLabel.text = "Onboarding users through Google and Email"
         spanLabel.numberOfLines = 3
@@ -319,19 +331,19 @@ class ViewController: UIViewController {
     }
 
     @objc func googleLoginBtnClicked() {
-        loginBtnClicked(loginOption: UniPassSDKLoginOption(connectType: ConnectType.google, authorize: false, returnEmail: emailReturnSwitch?.isOn))
+        loginBtnClicked(loginOption: UniPassSDKLoginOption(connectType: ConnectType.google, authorize: false, returnEmail: emailReturnSwitch?.isOn, forceLogin: forceLoginSwitch?.isOn))
     }
 
     @objc func emailLoginBtnClicked() {
-        loginBtnClicked(loginOption: UniPassSDKLoginOption(connectType: ConnectType.email, authorize: false, returnEmail: emailReturnSwitch?.isOn))
+        loginBtnClicked(loginOption: UniPassSDKLoginOption(connectType: ConnectType.email, authorize: false, returnEmail: emailReturnSwitch?.isOn, forceLogin: forceLoginSwitch?.isOn))
     }
 
     @objc func unipassLoginBtnClicked() {
-        loginBtnClicked(loginOption: UniPassSDKLoginOption(connectType: ConnectType.both, authorize: false, returnEmail: emailReturnSwitch?.isOn))
+        loginBtnClicked(loginOption: UniPassSDKLoginOption(connectType: ConnectType.both, authorize: false, returnEmail: emailReturnSwitch?.isOn, forceLogin: forceLoginSwitch?.isOn))
     }
 
     @objc func loginAuthClicked() {
-        loginBtnClicked(loginOption: UniPassSDKLoginOption(connectType: ConnectType.both, authorize: true, returnEmail: emailReturnSwitch?.isOn))
+        loginBtnClicked(loginOption: UniPassSDKLoginOption(connectType: ConnectType.both, authorize: true, returnEmail: emailReturnSwitch?.isOn, forceLogin: forceLoginSwitch?.isOn))
     }
 
     func loginBtnClicked(loginOption: UniPassSDKLoginOption?) {
